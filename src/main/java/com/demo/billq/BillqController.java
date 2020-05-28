@@ -17,8 +17,12 @@ public class BillqController {
     @GetMapping(value = "/billq/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<String> getCustomerOrderBillq(@PathVariable String id){
         //log.info("BillqController");
-
-        Mono<String> billq = Mono.just(System.getenv("price"));
+		String price = System.getenv("price");
+		if(price == null || price.isEmpty())
+		price = "$49";	
+		
+		final String finalPrice = price;
+		Mono<String> billq = Mono.just(finalPrice);
 
         return billq;
 
