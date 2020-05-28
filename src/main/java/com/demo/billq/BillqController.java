@@ -13,20 +13,12 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class BillqController {
 
-    @Autowired
-    Test1 test1;
-
-
-
-    @GetMapping(value = "/v1/billq/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+  
+    @GetMapping(value = "/billq/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<String> getCustomerOrderBillq(@PathVariable String id){
         //log.info("BillqController");
 
         Mono<String> billq = Mono.just(System.getenv("price"));
-
-        test1.test();
-
-
 
         return billq;
 
