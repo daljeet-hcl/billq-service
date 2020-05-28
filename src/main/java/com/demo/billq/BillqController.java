@@ -22,7 +22,7 @@ public class BillqController {
     public Mono<String> getCustomerOrderBillq(@PathVariable String id){
         //log.info("BillqController");
 
-        Mono<String> billq = Mono.just(" $49 ");
+        Mono<String> billq = Mono.just(System.getenv("price"));
 
         test1.test();
 
