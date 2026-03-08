@@ -1,0 +1,57 @@
+{
+  "name": "billq-service (Java 21)",
+  "image": "mcr.microsoft.com/devcontainers/java:25",
+  
+  "features": {
+    // We use the integrated Java feature to manage Maven; it's more robust in 2026
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "25",
+      "installMaven": "true",
+      "mavenVersion": "3.9.6"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": "true"
+    }
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.java",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-spring-boot-dashboard",
+        "pivotal.vscode-boot-dev-pack",
+        "vscjava.vscode-java-debug",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "[java]": {
+          "editor.defaultFormatter": "redhat.java",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        }
+      }
+    }
+  },
+  
+  "forwardPorts": [8083],
+  "portsAttributes": {
+    "8083": {
+      "label": "billq-service",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  "postCreateCommand": "mvn dependency:go-offline && echo '✓ Dev environment ready!'",
+  
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    // SDKMAN is the standard way Microsoft handles these paths in 2026
+    "JAVA_HOME": "/usr/local/sdkman/candidates/java/current",
+    "MAVEN_HOME": "/usr/local/sdkman/candidates/maven/current"
+
+  }
+}
